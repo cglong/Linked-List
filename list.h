@@ -18,9 +18,9 @@
 /* DO NOT DEFINE ANYTHING OTHER THAN WHAT I SAY HERE */
 typedef struct lnode
 {
-  /* FIXME: Declare a prev pointer named 'prev' here. */
-  /* FIXME: Declare a next pointer named 'next' here. */
-  /* FIXME: Declare an void pointer named 'data' here. */
+  struct node *prev;
+  struct node *next;
+  void *data;
 } node;
 
 /* The linked list struct.  Has a head pointer. */
