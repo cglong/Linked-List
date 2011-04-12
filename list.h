@@ -26,8 +26,8 @@ typedef struct lnode
 /* The linked list struct.  Has a head pointer. */
 typedef struct llist
 {
- /* FIXME: Declare a head pointer named 'head' here. */
- /* FIXME: Declare an unsigned integer named 'size' here. */
+ node *head;
+ unsigned int size;
 } list;
 
 /* FIXME Typedef a new function pointer type that points to a function that
