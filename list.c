@@ -68,6 +68,9 @@ void push_front(list* llist, void* data)
         newNode->next = head;
         head->prev = newNode;
         prev->next = newNode;
+    } else {
+        newNode->prev = newNode;
+        newNode->next = newNode;
     }
     llist->head = newNode;
 }
@@ -90,8 +93,11 @@ void push_back(list* llist, void* data)
         newNode->next = head;
         head->prev = newNode;
         prev->next = newNode;
-    } else
+    } else {
         llist->head = newNode;
+        newNode->prev = newNode;
+        newNode->next = newNode;
+    }
 }
 
 /** pop_front
