@@ -30,12 +30,9 @@ typedef struct llist
  unsigned int size;
 } list;
 
-/* FIXME Typedef a new function pointer type that points to a function that
-         takes in a void* and returns nothing call it list_op */
-/* FIXME Typedef a new function pointer type that points to a function that
-         takes in a void* and returns an int call it list_pred */
-/* FIXME Typedef a new function pointer type that points to a function that
-         takes in 2 const void*'s and returns an int call it compare_op */
+typedef void (*list_op)(void *);
+typedef int (*list_pred)(void *);
+typedef int (*compare_op)(const void *, const void *);
 
 /**************************************************
 ** Prototypes for linked list library functions. **
