@@ -59,7 +59,15 @@ static node* create_node(void* data)
   */
 void push_front(list* llist, void* data)
 {
-    /// @todo Implement
+    node *newNode = create_node(data);
+    node *head = llist->head;
+    
+    if (head != NULL) {
+        newNode->prev = head->prev;
+        newNode->next = head;
+        head->prev = newNode;
+    }
+    llist->head = newNode;
 }
 
 /** push_back
