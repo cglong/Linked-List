@@ -141,9 +141,20 @@ int pop_front(list* llist, list_op free_func)
   */
 int pop_back(list* llist, list_op free_func)
 {
-    /// @todo Implement changing the return value
-    /// @note remember to also free the node itself
-    return 0;
+    node *back = llist->head->prev;
+    node *prev = back->prev;
+    node *next = back->next;
+    
+    prev->next = next;
+    next->prev = prev;
+    
+    free_func(back->data);
+    free(back);
+    
+    if (back == NULL)
+        return 0;
+    else
+        return -1;
 }
 
 /** remove
