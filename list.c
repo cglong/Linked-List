@@ -21,8 +21,13 @@ static node* create_node(void* data);
   */
 list* create_list(void)
 {
-    /// @todo Implement changing the return value!
-    return NULL;
+    list *l;
+    l = malloc(sizeof(list));
+    if (l == NULL)
+        return NULL;
+    l->size = 0;
+    l->head = NULL;
+    return l;
 }
 
 /** create_node
