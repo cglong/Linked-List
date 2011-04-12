@@ -123,6 +123,8 @@ int pop_front(list* llist, list_op free_func)
     free_func(front->data);
     free(front);
     
+    // FIXME Handle last node case
+    
     if (front == NULL)
         return 0;
     else
@@ -150,6 +152,8 @@ int pop_back(list* llist, list_op free_func)
     
     free_func(back->data);
     free(back);
+    
+    // FIXME Handle last node case
     
     if (back == NULL)
         return 0;
