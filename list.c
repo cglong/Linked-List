@@ -122,6 +122,11 @@ int pop_front(list* llist, list_op free_func)
     
     free_func(front->data);
     free(front);
+    
+    if (front == NULL)
+        return 0;
+    else
+        return -1;
 }
 
 /** pop_back
