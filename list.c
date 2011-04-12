@@ -106,9 +106,16 @@ void push_back(list* llist, void* data)
   */
 int pop_front(list* llist, list_op free_func)
 {
-    /// @todo Implement changing the return value
-    /// @note remember to also free the node itself
-    return 0;
+    node *front = llist->head;
+    node *prev = front->prev;
+    node *next = front->next;
+    
+    prev->next = next;
+    next->prev = prev;
+    llist->head = next;
+    
+    free_func(front->data);
+    free(front);
 }
 
 /** pop_back
