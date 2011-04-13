@@ -115,19 +115,22 @@ void push_back(list* llist, void* data)
 int pop_front(list* llist, list_op free_func)
 {
     node *front = llist->head;
-    node *prev = front->prev;
-    node *next = front->next;
     
-    prev->next = next;
-    next->prev = prev;
-    llist->head = next;
-    
-    free_func(front->data);
-    free(front);
-    llist->size--;
-    
-    if (!llist->size)
-        llist->head = NULL;
+    if (front != NULL) {
+        node *prev = front->prev;
+        node *next = front->next;
+        
+        prev->next = next;
+        next->prev = prev;
+        llist->head = next;
+        
+        free_func(front->data);
+        free(front);
+        llist->size--;
+        
+        if (!llist->size)
+            llist->head = NULL;
+    }
     
     if (front == NULL)
         return 0;
@@ -147,24 +150,27 @@ int pop_front(list* llist, list_op free_func)
   */
 int pop_back(list* llist, list_op free_func)
 {
-    node *back = llist->head->prev;
-    node *prev = back->prev;
-    node *next = back->next;
-    
-    prev->next = next;
-    next->prev = prev;
-    
-    free_func(back->data);
-    free(back);
-    llist->size--;
-    
-    if (!llist->size)
-        llist->head = NULL;
-    
-    if (back == NULL)
+    if (llist->head != NULL) {
+        node *back = llist->head->prev;
+        node *prev = back->prev;
+        node *next = back->next;
+        
+        prev->next = next;
+        next->prev = prev;
+        
+        free_func(back->data);
+        free(back);
+        llist->size--;
+        
+        if (!llist->size)
+            llist->head = NULL;
+        
+        if (back == NULL)
+            return 0;
+        else
+            return -1;
+    } else
         return 0;
-    else
-        return -1;
 }
 
 /** remove
@@ -183,25 +189,27 @@ int remove_data(list* llist, void* data, compare_op compare_func, list_op free_f
     node *test = head;
     node *prev, *next;
     
-    do {
-        prev = test->prev;
-        next = test->next;
-        if (compare_func(test->data, data)) {
-            prev->next = next;
-            next->prev = prev;
-            
-            if (test == head)
-                llist->head = next;
-            
-            free_func(test->data);
-            free(test);
-            llist->size--;
-            
-            if (test != NULL)
-                return -1;
-        }
-        test = next;
-    } while (test != head);
+    if (head != NULL) {
+        do {
+            prev = test->prev;
+            next = test->next;
+            if (compare_func(test->data, data)) {
+                prev->next = next;
+                next->prev = prev;
+                
+                if (test == head)
+                    llist->head = next;
+                
+                free_func(test->data);
+                free(test);
+                llist->size--;
+                
+                if (test != NULL)
+                    return -1;
+            }
+            test = next;
+        } while (test != head);
+    }
     
     if (!llist->size)
         llist->head = NULL;
@@ -224,25 +232,27 @@ int remove_if(list* llist, list_pred pred_func, list_op free_func)
     node *test = head;
     node *prev, *next;
     
-    do {
-        prev = test->prev;
-        next = test->next;
-        if (pred_func(test->data)) {
-            prev->next = next;
-            next->prev = prev;
-            
-            if (test == head)
-                llist->head = next;
-            
-            free_func(test->data);
-            free(test);
-            llist->size--;
-            
-            if (test != NULL)
-                return -1;
-        }
-        test = next;
-    } while (test != head);
+    if (head != NULL) {
+        do {
+            prev = test->prev;
+            next = test->next;
+            if (pred_func(test->data)) {
+                prev->next = next;
+                next->prev = prev;
+                
+                if (test == head)
+                    llist->head = next;
+                
+                free_func(test->data);
+                free(test);
+                llist->size--;
+                
+                if (test != NULL)
+                    return -1;
+            }
+            test = next;
+        } while (test != head);
+    }
     
     if (!llist->size)
         llist->head = NULL;
@@ -321,12 +331,14 @@ int find_occurrence(list* llist, void* search, compare_op compare_func)
     node *head = llist->head;
     node *test = head;
     
-    do {
-        if (compare_func(test->data, search))
-            return 1;
-        else
-            test = test->next;
-    } while (test != head);
+    if (head != NULL) {
+        do {
+            if (compare_func(test->data, search))
+                return 1;
+            else
+                test = test->next;
+        } while (test != head);
+    }
     
     return 0;
 }
@@ -342,21 +354,24 @@ int find_occurrence(list* llist, void* search, compare_op compare_func)
 void empty_list(list* llist, list_op free_func)
 {
     node *head = llist->head;
-    node *current = head->next;
-    node *next;
     
-    while (current != head) {
-        next = current->next;
-        free_func(current->data);
-        free(current);
-        current = next;
+    if (head != NULL) {
+        node *current = head->next;
+        node *next;
+        
+        while (current != head) {
+            next = current->next;
+            free_func(current->data);
+            free(current);
+            current = next;
+            llist->size--;
+        }
+        
+        free_func(head->data);
+        free(head);
         llist->size--;
+        llist->head = NULL;
     }
-    
-    free_func(head->data);
-    free(head);
-    llist->size--;
-    llist->head = NULL;
 }
 
 /** traverse
@@ -371,10 +386,12 @@ void traverse(list* llist, list_op do_func)
     node *head = llist->head;
     node *current = head;
     
-    do {
-        do_func(current);
-        current = current->next;
-    } while (current != head);
+    if (current != NULL) {
+        do {
+            do_func(current);
+            current = current->next;
+        } while (current != head);
+    }
 }
 
 /* Below are the default functions users of the linked list library
