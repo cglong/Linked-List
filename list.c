@@ -274,8 +274,10 @@ void* front(list* llist)
   */
 void* back(list* llist)
 {
-    /// @todo Implement changing the return value!
-    return NULL;
+    if (llist->head != NULL)
+        return llist->head->prev->data;
+    else
+        return NULL;
 }
 
 /** is_empty
