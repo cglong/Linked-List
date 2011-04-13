@@ -21,7 +21,7 @@ point* create_point(int x, int y)
 
 void print_point(void* data)
 {
-    point *p = (point *) data;
+    point *p = (point *)data;
 	printf("(%d, %d)", p->x, p->y);
 }
 
@@ -32,8 +32,18 @@ void free_point(void* data)
 
 int compare_point_data(const void* a, const void* b)
 {
-	/* TODO Implement compare by x then y here or what have you.*/
-	return 0;
+	point *pa = (point *)a;
+	point *pb = (point *)b;
+	
+	int pasum = pa->x + pa->y;
+	int pbsum = pb->x + pb->y;
+	
+	if (pasum < pbsum)
+	    return -1;
+	else if (pasum == pbsum)
+	    return 0;
+	else
+	    return 1;
 }
 
 /* This main function does a little testing
