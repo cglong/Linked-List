@@ -89,8 +89,19 @@ int main(void)
  	traverse(llist, print_point);
  	printf("\n"); 	
  	
- 	/* YOU ARE REQUIRED TO MAKE MORE TEST CASES THAN THE ONES PROVIDED HERE */
- 	/* You will get points off if you do not you should at least test each function here */
+ 	/* Add from back */
+ 	push_back(llist, create_point(3, 5));
+ 	push_back(llist, create_point(9, 16));
+ 	printf("TEST CASE 6\nA List with two nodes should print those two nodes:");
+ 	traverse(llist, print_point);
+ 	printf("\n");
+ 	
+ 	/* Remove from back */
+ 	pop_back(llist, free_point);
+ 	pop_back(llist, free_point);
+ 	printf("TEST CASE 7\nAfter freeing all nodes the list should be empty:");
+ 	traverse(llist, print_point);
+ 	printf("\n");
  	
  	/* Testing over clean up*/
  	free(llist);
