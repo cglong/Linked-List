@@ -16,11 +16,13 @@ point* create_point(int x, int y)
 	p = malloc(sizeof(point));
 	p->x = x;
 	p->y = y;
+	return p;
 }
 
 void print_point(void* data)
 {
-	printf("(%d, %d)", data->x, data->y);
+    point *p = (point *) data;
+	printf("(%d, %d)", p->x, p->y);
 }
 
 void free_point(void* data)
