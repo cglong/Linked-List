@@ -341,8 +341,22 @@ int find_occurrence(list* llist, void* search, compare_op compare_func)
   */
 void empty_list(list* llist, list_op free_func)
 {
-    /// @todo Implement
-    /// @note Free all of the nodes not the linked list itself.
+    node *head = llist->head;
+    node *current = head->next;
+    node *next;
+    
+    while (current != head) {
+        next = current->next;
+        free_func(current->data);
+        free(current);
+        current = next;
+        llist->size--;
+    }
+    
+    free_func(head->data);
+    free(head);
+    llist->size--;
+    llist->head = NULL;
 }
 
 /** traverse
