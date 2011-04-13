@@ -399,7 +399,7 @@ void print_data(void* data)
   */
 void free_data(void* data)
 {
-    ///@todo free the data here.
+    free(data);
 }
 
 /** compare_data
