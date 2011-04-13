@@ -411,12 +411,12 @@ void free_data(void* data)
   */
 int compare_data(const void* a, const void* b)
 {
-    /** @note this functions should if a was 0x6000000 and b was 0x7000000
-      * You will return -1 since 0x60000000 is less than 0x70000000
-      * Do not dereference a or b here.
-      */
-    /// @todo Implement changing the return value
-    return 0;
+    if (a < b)
+        return -1;
+    else if (a == b)
+        return 0;
+    else
+        return 1;
 }
 
 /** test_data
