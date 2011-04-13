@@ -388,7 +388,7 @@ void traverse(list* llist, list_op do_func)
     
     if (current != NULL) {
         do {
-            do_func(current);
+            do_func(current->data);
             current = current->next;
         } while (current != head);
     }
