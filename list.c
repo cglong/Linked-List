@@ -427,8 +427,5 @@ int compare_data(const void* a, const void* b)
   */
 int test_data(const void* a)
 {
-    ///@warning to test this do not put any nodes whose data is NULL in your linked list for simplicity sake in addition we will not be calling your functions with NULL.
-    ///@note for this one and compare_data you may have to do some CASTING!
-    /// @todo Implement changing the return value
-    return 0;
+    return a != 0;
 }
