@@ -368,7 +368,13 @@ void empty_list(list* llist, list_op free_func)
   */
 void traverse(list* llist, list_op do_func)
 {
-    /// @todo Implement
+    node *head = llist->head;
+    node *current = head;
+    
+    do {
+        do_func(current);
+        current = current->next;
+    } while (current != head);
 }
 
 /* Below are the default functions users of the linked list library
