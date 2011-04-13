@@ -21,8 +21,10 @@ point* create_point(int x, int y)
 
 void print_point(void* data)
 {
-    point *p = (point *)data;
-	printf("(%d, %d)", p->x, p->y);
+    if (data != NULL) {
+        point *p = (point *)data;
+	    printf("(%d, %d)", p->x, p->y);
+	}
 }
 
 void free_point(void* data)
