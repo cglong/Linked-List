@@ -25,8 +25,7 @@ void print_point(void* data)
 
 void free_point(void* data)
 {
-	/* TODO Implement Just free the point.  Technically since you are just freeing the data we could
-        Just call free_data here instead. */
+	free_data(data);
 }
 
 int compare_point_data(const void* a, const void* b)
