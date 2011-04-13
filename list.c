@@ -259,9 +259,10 @@ int remove_if(list* llist, list_pred pred_func, list_op free_func)
   */
 void* front(list* llist)
 {
-    /// @todo Implement changing the return value!
-    /// @note you are returning the HEAD's DATA not the head node. Remember the user should never deal with the linked list nodes.
-    return NULL;
+    if (llist->head != NULL)
+        return llist->head->data;
+    else
+        return NULL;
 }
 
 /** back
