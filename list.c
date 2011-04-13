@@ -289,8 +289,10 @@ void* back(list* llist)
   */
 int is_empty(list* llist)
 {
-    ///@note an empty list by the way we want you to implement it has a size of zero and head points to NULL.
-    return 0;
+    if (!size && llist->head == NULL)
+        return 1;
+    else
+        return 0;
 }
 
 /** size
