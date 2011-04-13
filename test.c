@@ -12,8 +12,10 @@ typedef struct point
 
 point* create_point(int x, int y)
 {
-	/* TODO Implement Allocate a variable of type point set its x and y and return it.*/
-	return NULL;
+	point *p;
+	p = malloc(sizeof(point));
+	p->x = x;
+	p->y = y;
 }
 
 void print_point(void* data)
