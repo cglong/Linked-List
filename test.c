@@ -20,7 +20,7 @@ point* create_point(int x, int y)
 
 void print_point(void* data)
 {
-	/* TODO Implement just print out the x and y here. */
+	printf("(%d, %d)", data->x, data->y);
 }
 
 void free_point(void* data)
