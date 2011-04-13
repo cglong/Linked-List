@@ -388,7 +388,7 @@ void traverse(list* llist, list_op do_func)
   */
 void print_data(void* data)
 {
-    ///@todo just call printf.  Remember that %p means pointer.
+    printf("%p", data);
 }
 
 /** free_data
