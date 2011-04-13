@@ -126,7 +126,8 @@ int pop_front(list* llist, list_op free_func)
     free(front);
     llist->size--;
     
-    // FIXME Handle last node case
+    if (!llist->size)
+        llist->head = NULL;
     
     if (front == NULL)
         return 0;
@@ -157,7 +158,8 @@ int pop_back(list* llist, list_op free_func)
     free(back);
     llist->size--;
     
-    // FIXME Handle last node case
+    if (!llist->size)
+        llist->head = NULL;
     
     if (back == NULL)
         return 0;
@@ -201,7 +203,8 @@ int remove_data(list* llist, void* data, compare_op compare_func, list_op free_f
         test = next;
     } while (test != head);
     
-    // FIXME Handle last node case
+    if (!llist->size)
+        llist->head = NULL;
     
     return 0;
 }
@@ -241,7 +244,8 @@ int remove_if(list* llist, list_pred pred_func, list_op free_func)
         test = next;
     } while (test != head);
     
-    // FIXME Handle last node case
+    if (!llist->size)
+        llist->head = NULL;
     
     return 0;
 }
