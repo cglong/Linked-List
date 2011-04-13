@@ -289,7 +289,7 @@ void* back(list* llist)
   */
 int is_empty(list* llist)
 {
-    if (!size && llist->head == NULL)
+    if (!llist->size && llist->head == NULL)
         return 1;
     else
         return 0;
