@@ -18,8 +18,8 @@
 /* DO NOT DEFINE ANYTHING OTHER THAN WHAT I SAY HERE */
 typedef struct lnode
 {
-  struct node *prev;
-  struct node *next;
+  struct lnode *prev;
+  struct lnode *next;
   void *data;
 } node;
 
