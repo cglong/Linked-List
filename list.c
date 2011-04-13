@@ -73,6 +73,7 @@ void push_front(list* llist, void* data)
         newNode->next = newNode;
     }
     llist->head = newNode;
+    llist->size++;
 }
 
 /** push_back
@@ -98,6 +99,7 @@ void push_back(list* llist, void* data)
         newNode->prev = newNode;
         newNode->next = newNode;
     }
+    llist->size++;
 }
 
 /** pop_front
@@ -122,6 +124,7 @@ int pop_front(list* llist, list_op free_func)
     
     free_func(front->data);
     free(front);
+    llist->size--;
     
     // FIXME Handle last node case
     
@@ -152,6 +155,7 @@ int pop_back(list* llist, list_op free_func)
     
     free_func(back->data);
     free(back);
+    llist->size--;
     
     // FIXME Handle last node case
     
@@ -189,6 +193,7 @@ int remove_data(list* llist, void* data, compare_op compare_func, list_op free_f
             
             free_func(test->data);
             free(test);
+            llist->size--;
             
             if (test != NULL)
                 return -1;
@@ -228,6 +233,7 @@ int remove_if(list* llist, list_pred pred_func, list_op free_func)
             
             free_func(test->data);
             free(test);
+            llist->size--;
             
             if (test != NULL)
                 return -1;
